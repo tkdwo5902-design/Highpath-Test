@@ -1,0 +1,10 @@
+name: hipass-check
+on: workflow_dispatch
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 접속 테스트
+        run: |
+          curl -s -o /dev/null -w "HTTP %{http_code}\n" -m 30 https://www.hipass.co.kr
+          curl -s -m 30 https://www.hipass.co.kr | head -c 500
